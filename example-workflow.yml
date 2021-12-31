@@ -1,0 +1,19 @@
+name: Deploy site
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: roots/trellis-deploy-action@v1
+      with:
+        ansible-vault-password: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
+        ssh-private-key: ${{ secrets.TRELLIS_DEPLOY_SSH_PRIVATE_KEY }}
+        ssh-known-hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+        theme-name: roots
