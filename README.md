@@ -42,11 +42,11 @@ Note: this depends on [GitHub CLI](https://cli.github.com/) being installed.
 
 ## Inputs
 
-## `ansible-vault-password`
+### `ansible-vault-password`
 **Required** Ansible Vault password. Use a [GitHub secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for this value (example in usage
 above).
 
-## `ssh-private-key`
+#### `ssh-private-key`
 **Required** SSH private key (contents of key file). Use a [GitHub secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for this value 
 (example in usage above).
 
@@ -64,7 +64,7 @@ XBiSX/JevcOgI3f7NVYwAAAADlDjd76fDFdfVwbG95AQIDBAUGBw==
 
 Note: using `trellis key generate` will set this secret value automatically.
 
-## `ssh-known-hosts`
+#### `ssh-known-hosts`
 **Required** Known hosts for SSH. Use a [GitHub secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for this value (example in usage
 above).
 
@@ -85,37 +85,37 @@ Note: using `trellis key generate` will set this secret value automatically.
 This value can also be found in your local `~/.ssh/known_hosts` file if you've
 previously connected to the host.
 
-## `theme-name`
+#### `theme-name`
 
 **Required** The name of the WordPress theme; used for npm/cache caching.
 
-## `deploy`
+#### `deploy`
 
 Whether to run the deploy or not. Default: `true`.
 
 When set to `false`, the action will do all the same setup without actually
 running the deploy.
 
-## `environment`
+#### `environment`
 
 The name of the Trellis environment to deploy. Default: `production`.
 
-## `branch`
+#### `branch`
 
 Git branch name to deploy. Default: `master`.
 
-## `site-name`
+#### `site-name`
 
 The name of the Trellis site to deploy. Default: main/first site name.
 
-## `node-version`
+#### `node-version`
 
 Version of Node JS to install and use. Default: `16`.
 
-## `python-version`
+#### `python-version`
 
 Version of Python to install and use. Default: `3.9`.
 
-## `trellis-cli-version`
+#### `trellis-cli-version`
 
 Version of trellis-cli to install and use. Default: `latest`.
