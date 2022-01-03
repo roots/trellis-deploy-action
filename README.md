@@ -49,7 +49,7 @@ above).
 This can also be set easily using the GitHub CLI:
 
 ```bash
-gh secret set ANSIBLE_VAULT_PASS -b $(trellis exec cat .vault_pass)
+gh secret set ANSIBLE_VAULT_PASSWORD -b $(trellis exec cat .vault_pass)
 ```
 
 #### `ssh-private-key`
