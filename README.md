@@ -46,6 +46,12 @@ Note: this depends on [GitHub CLI](https://cli.github.com/) being installed.
 **Required** Ansible Vault password. Use a [GitHub secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for this value (example in usage
 above).
 
+This can also be set easily using the GitHub CLI:
+
+```bash
+gh secret set ANSIBLE_VAULT_PASS $(trellis exec cat .vault_pass)
+```
+
 #### `ssh-private-key`
 **Required** SSH private key (contents of key file). Use a [GitHub secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for this value 
 (example in usage above).
