@@ -17,9 +17,6 @@ inputs:
   trellis-cli-version:
     description: 'Version of trellis-cli'
     required: false
-  deploy-site-name:
-    description: 'Name of the Trellis site to deploy (defaults the first site if not specified)'
-    required: false
   deploy:
     description: 'Whether to run the deploy or not. Set this to false if you want more manual control.'
     required: false
@@ -28,6 +25,13 @@ inputs:
     description: 'Name of environment to deploy. Defaults to production.'
     required: false
     default: production
+  branch:
+    description: 'Git branch to deploy. Defaults to `master`.'
+    required: false
+    default: master
+  site-name:
+    description: 'Name of the Trellis site to deploy (defaults the first site if not specified)'
+    required: false
   theme-name:
     description: 'Name of theme directory'
     required: true
@@ -83,10 +87,14 @@ runs:
     run: trellis init
     shell: bash
   - name: Deploy site
-    if: inputs.deploy == 'true' && inputs.deploy-site-name != ''
-    run: trellis deploy ${{ inputs.environment }} ${{ inputs.deploy-site-name }}
+    if: inputs.deploy == 'true' && inputs.site-name != '' && inputs.branch != ''
+    run: trellis deploy --branch=${{inputs.branch }} ${{ inputs.environment }}
     shell: bash
   - name: Deploy site
-    if: inputs.deploy == 'true' && inputs.deploy-site-name == ''
-    run: trellis deploy ${{ inputs.environment }}
+    if: inputs.deploy == 'true' && inputs.site-name != '' && inputs.branch == ''
+    run: trellis deploy ${{ inputs.environment }} ${{ inputs.site-name }}
+    shell: bash
+  - name: Deploy site
+    if: inputs.deploy == 'true' && inputs.branch != '' && inputs.site-name == ''
+    run: trellis deploy --branch=${{inputs.branch }} ${{ inputs.environment }}
     shell: bash
