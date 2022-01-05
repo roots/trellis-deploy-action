@@ -86,15 +86,11 @@ runs:
   - name: Install Trellis dependencies
     run: trellis init
     shell: bash
-  - name: Deploy site
-    if: inputs.deploy == 'true' && inputs.site-name != '' && inputs.branch != ''
+  - name: Deploy default site
+    if: inputs.deploy == 'true' && inputs.site-name == ''
     run: trellis deploy --branch=${{inputs.branch }} ${{ inputs.environment }}
     shell: bash
   - name: Deploy site
-    if: inputs.deploy == 'true' && inputs.site-name != '' && inputs.branch == ''
-    run: trellis deploy ${{ inputs.environment }} ${{ inputs.site-name }}
-    shell: bash
-  - name: Deploy site
-    if: inputs.deploy == 'true' && inputs.branch != '' && inputs.site-name == ''
-    run: trellis deploy --branch=${{inputs.branch }} ${{ inputs.environment }}
+    if: inputs.deploy == 'true' && inputs.site-name != ''
+    run: trellis deploy --branch=${{inputs.branch }} ${{ inputs.environment }} ${{ inputs.site-name }}
     shell: bash
