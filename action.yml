@@ -1,4 +1,4 @@
-name: 'Trellis Deploy'
+name: 'Trellis CLI Deploy'
 author: Scott Walkinshaw
 description: 'GitHub Action for deploying a Trellis based WordPress project'
 branding:
