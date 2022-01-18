@@ -29,12 +29,9 @@ inputs:
     description: 'Git branch to deploy. Defaults to `master`.'
     required: false
     default: master
-  site-name:
+  web-hostname:
     description: 'Name of the Trellis site to deploy (defaults the first site if not specified)'
     required: false
-  theme-name:
-    description: 'Name of theme directory'
-    required: true
   ansible-vault-password:
     description: 'Ansible Vault password. Use a GitHub secret for this value.'
     required: true
@@ -48,11 +45,6 @@ inputs:
 runs:
   using: 'composite'
   steps:
-  - uses: actions/setup-node@v2
-    with:
-      node-version: ${{ inputs.node-version }}
-      cache: yarn
-      cache-dependency-path: site/web/app/themes/${{ inputs.theme-name }}/yarn.lock
   - uses: actions/setup-python@v2
     with:
       python-version: ${{ inputs.python-version }}
@@ -87,10 +79,10 @@ runs:
     run: trellis init
     shell: bash
   - name: Deploy default site
-    if: inputs.deploy == 'true' && inputs.site-name == ''
+    if: inputs.deploy == 'true' && inputs.web-hostname == ''
     run: trellis deploy --branch=${{inputs.branch }} ${{ inputs.environment }}
     shell: bash
   - name: Deploy site
-    if: inputs.deploy == 'true' && inputs.site-name != ''
-    run: trellis deploy --branch=${{inputs.branch }} ${{ inputs.environment }} ${{ inputs.site-name }}
+    if: inputs.deploy == 'true' && inputs.web-hostname != ''
+    run: trellis deploy --branch=${{inputs.branch }} ${{ inputs.environment }} ${{ inputs.web-hostname }}
     shell: bash
