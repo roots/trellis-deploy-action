@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: roots/trellis-deploy-action@v1
+    - uses: roots/trellis-deploy-action@main
       with:
         ansible-vault-password: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
         ssh-private-key: ${{ secrets.TRELLIS_DEPLOY_SSH_PRIVATE_KEY }}
