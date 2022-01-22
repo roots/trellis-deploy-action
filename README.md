@@ -71,14 +71,18 @@ XBiSX/JevcOgI3f7NVYwAAAADlDjd76fDFdfVwbG95AQIDBAUGBw==
 Note: using `trellis key generate` will set this secret value automatically.
 
 #### `ssh-known-hosts`
-**Required** Known hosts for SSH. Use a [GitHub secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for this value (example in usage
+**Required** Known hosts for SSH. Use a [GitHub secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets) for this value (example in usageo
 above).
+
+Since the GitHub Action runner will be the client SSHing into your remote
+Trellis server, this is needed to allow a connection from GitHub -> your server,
+which means the known host is for the remote server hostname.
 
 This value is **not** just the hostname/IP, it needs be in the format that
 `ssh-keyscan` returns (OpenSSH format):
 
 ```bash
-ssh-keyscan -t ed25519 -H github.com
+ssh-keyscan -t ed25519 -H MY_SERVER_HOSTNAME
 ```
 
 Which returns something like this:
