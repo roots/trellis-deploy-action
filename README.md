@@ -1,3 +1,21 @@
+# Deprecation notice
+
+This action is being deprecated in favour of https://github.com/roots/setup-trellis-cli.
+
+Even though it only existed for a week, this action served its purpose to
+explore how to make deploying Trellis sites easier with GitHub Actions.
+
+However, this was implemented as a "composite" action and is all YML based
+meaning it's not very flexible and hard to support different use cases. It also
+assumed all themes were Sage-based.
+
+The new `roots/setup-trellis-cli` action is a custom one written in JavaScript.
+Even though it does less overall, it's much more composable.
+
+See the main [Sage deploy
+example](https://github.com/roots/setup-trellis-cli/blob/main/examples/sage.yml)
+for the equivalent workflow using the new action to replace this one.
+
 # Trellis deploy GitHub Action
 
 This action deploys [Trellis](https://github.com/roots/trellis) sites. It's a composite action which takes care of the following automatically:
